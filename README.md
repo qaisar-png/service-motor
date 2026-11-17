@@ -1,58 +1,206 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Aplikasi Servis Motor
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Aplikasi manajemen servis motor berbasis **Laravel** dan **MySQL**, dengan antarmuka web (Blade + Bootstrap) dan **REST API** yang dapat diuji menggunakan **Postman**.
 
-## About Laravel
+Dibuat sebagai Tugas Project Akhir.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Nama**: [isi nama lengkap]
+- **NIS/NIM**: [isi]
+- **Kelas**: [isi]
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Fitur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| No | Menu | Keterangan |
+|----|------|------------|
+| 1 | Data Pelanggan | CRUD pelanggan (id, nama lengkap, no HP, alamat, pekerjaan) |
+| 2 | Data Kendaraan | CRUD kendaraan (no plat, jenis dengan radio button Matic / Manual Transmisi, no STNK, tahun, nama pemilik, warna) |
+| 3 | Daftar Service | Pendaftaran servis. No plat dan id pelanggan berupa dropdown dari tabel terkait, nama pelanggan muncul otomatis |
+| 4 | Data Service | Detail pengerjaan. Id servis berupa dropdown, keluhan muncul otomatis, ditambah estimasi, mekanik, dan sparepart |
+| 5 | Pembayaran Service | Pembayaran dengan id servis dropdown, jumlah biaya, jenis pembayaran (radio button Cash / Tunai atau Non Tunai), dan keterangan |
 
-## Learning Laravel
+## Teknologi
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+- PHP 8.2 atau lebih baru
+- Laravel 11/12
+- MySQL / MariaDB
+- Composer
+- Bootstrap 5 (via CDN)
+- Postman (untuk pengujian API)
+- Git
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
-
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
-
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+## Instalasi (Clone dari Git)
 
 ```bash
-composer require laravel/boost --dev
+# 1. Clone repository
+git clone https://github.com/USERNAME/servis-motor.git
+cd servis-motor
 
-php artisan boost:install
+# 2. Install dependensi
+composer install
+
+# 3. Salin file environment
+cp .env.example .env          # Windows (CMD): copy .env.example .env
+
+# 4. Generate application key
+php artisan key:generate
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Buat database kosong bernama `db_servis_motor` (misalnya lewat phpMyAdmin), lalu sesuaikan `.env`:
 
-## Contributing
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=db_servis_motor
+DB_USERNAME=root
+DB_PASSWORD=
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Lanjutkan dengan migration dan seeder:
 
-## Code of Conduct
+```bash
+# 5. Buat tabel
+php artisan migrate
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+# 6. (Opsional) Isi data contoh
+php artisan db:seed
 
-## Security Vulnerabilities
+# 7. Jalankan server
+php artisan serve
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+Aplikasi dapat diakses di `http://127.0.0.1:8000`.
 
-## License
+> Untuk mengulang database dari awal beserta data contoh: `php artisan migrate:fresh --seed`
+> (perintah ini **menghapus semua data**).
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Struktur Database
+
+| Tabel | Primary Key | Foreign Key |
+|-------|-------------|-------------|
+| `pelanggan` | `id_pelanggan` | - |
+| `kendaraan` | `no_plat` | - |
+| `daftar_service` | `id_servis` | `no_plat` ke `kendaraan`, `id_pelanggan` ke `pelanggan` |
+| `data_service` | `id` | `id_servis` ke `daftar_service` |
+| `pembayaran` | `id` | `id_servis` ke `daftar_service` |
+
+Nama pelanggan dan keluhan tidak disimpan ulang di tabel lain, melainkan diambil lewat relasi Eloquent.
+
+## Rute Web
+
+| Menu | URL |
+|------|-----|
+| Pelanggan | `/pelanggan` |
+| Kendaraan | `/kendaraan` |
+| Daftar Service | `/daftar-service` |
+| Data Service | `/data-service` |
+| Pembayaran | `/pembayaran` |
+
+## Dokumentasi API
+
+Base URL: `http://127.0.0.1:8000/api`
+
+Wajib menyertakan header `Accept: application/json`. Untuk `POST` dan `PUT`, kirim body bertipe **raw JSON**.
+
+| Method | Endpoint | Fungsi |
+|--------|----------|--------|
+| GET | `/pelanggan` | Daftar semua pelanggan |
+| POST | `/pelanggan` | Tambah pelanggan |
+| GET | `/pelanggan/{id}` | Detail satu pelanggan |
+| PUT | `/pelanggan/{id}` | Ubah pelanggan |
+| DELETE | `/pelanggan/{id}` | Hapus pelanggan |
+
+Pola yang sama berlaku untuk resource berikut:
+
+- `/kendaraan` (identifier: no plat, spasi ditulis `%20`, contoh `/kendaraan/BK%201234%20AB`)
+- `/daftar-service`
+- `/data-service`
+- `/pembayaran`
+
+### Contoh Request
+
+**POST `/api/pelanggan`**
+
+```json
+{
+  "nama_lengkap": "Budi Santoso",
+  "no_hp": "081234567890",
+  "alamat": "Jl. Gatot Subroto No. 10, Medan",
+  "pekerjaan": "Wiraswasta"
+}
+```
+
+**POST `/api/kendaraan`**
+
+```json
+{
+  "no_plat": "BK 1234 AB",
+  "jenis_kendaraan": "Matic",
+  "no_stnk": "STNK-001",
+  "tahun_pembuatan": "2020",
+  "nama_pemilik": "Budi Santoso",
+  "warna": "Hitam"
+}
+```
+
+**POST `/api/daftar-service`**
+
+```json
+{
+  "no_plat": "BK 1234 AB",
+  "id_pelanggan": 1,
+  "keluhan": "Rem depan blong",
+  "tanggal_servis": "2026-11-10"
+}
+```
+
+**POST `/api/data-service`**
+
+```json
+{
+  "id_servis": 1,
+  "estimasi_service": "1 hari",
+  "nama_mekanik": "Pak Joko",
+  "sparepart_pengganti": "Kampas rem depan"
+}
+```
+
+**POST `/api/pembayaran`**
+
+```json
+{
+  "id_servis": 1,
+  "jumlah_biaya": 150000,
+  "jenis_pembayaran": "Cash / Tunai",
+  "keterangan": "Lunas"
+}
+```
+
+Nilai yang diterima untuk `jenis_kendaraan`: `Matic` atau `Manual Transmisi`. Nilai untuk `jenis_pembayaran`: `Cash / Tunai` atau `Non Tunai`.
+
+### Kode Respons
+
+| Kode | Arti |
+|------|------|
+| 200 | Berhasil (GET, PUT, DELETE) |
+| 201 | Data berhasil dibuat (POST) |
+| 404 | Data tidak ditemukan |
+| 422 | Validasi gagal |
+
+### Urutan Pengujian
+
+Karena ada relasi antar tabel, buat data sesuai urutan: **pelanggan, kendaraan, daftar-service, data-service, pembayaran**.
+
+## Troubleshooting
+
+| Masalah | Solusi |
+|---------|--------|
+| `No application encryption key` | Jalankan `php artisan key:generate` |
+| `SQLSTATE ... Unknown database` | Buat database `db_servis_motor` terlebih dahulu |
+| `Table ... doesn't exist` | Jalankan `php artisan migrate` |
+| API mengembalikan halaman HTML | Tambahkan header `Accept: application/json` |
+| `Duplicate entry` saat seeding | Jalankan `php artisan migrate:fresh --seed` |
+
+## Lisensi
+
+Proyek ini dibuat untuk keperluan pembelajaran.
