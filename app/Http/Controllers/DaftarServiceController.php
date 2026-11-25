@@ -57,6 +57,12 @@ class DaftarServiceController extends Controller
         return redirect()->route('daftar-service.index')->with('ok', 'Daftar service diperbarui');
     }
 
+    public function show(DaftarService $daftarService)
+    {
+        $daftarService->load(['kendaraan', 'pelanggan']);
+        return view('daftar_service.show', compact('daftarService'));
+    }
+
     public function destroy(DaftarService $daftarService)
     {
         $daftarService->delete();

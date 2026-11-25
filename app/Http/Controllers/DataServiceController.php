@@ -52,6 +52,12 @@ class DataServiceController extends Controller
         return redirect()->route('data-service.index')->with('ok', 'Data service diperbarui');
     }
 
+    public function show(DataService $dataService)
+    {
+        $dataService->load('daftarService.kendaraan', 'daftarService.pelanggan');
+        return view('data_service.show', compact('dataService'));
+    }
+
     public function destroy(DataService $dataService)
     {
         $dataService->delete();

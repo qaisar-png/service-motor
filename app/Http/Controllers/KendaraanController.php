@@ -50,6 +50,11 @@ class KendaraanController extends Controller
         return redirect()->route('kendaraan.index')->with('ok', 'Data kendaraan diperbarui');
     }
 
+    public function show(Kendaraan $kendaraan)
+    {
+        return view('kendaraan.show', compact('kendaraan'));
+    }
+
     public function destroy(Kendaraan $kendaraan)
     {
         $kendaraan->delete();

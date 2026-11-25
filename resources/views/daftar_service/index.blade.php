@@ -35,7 +35,8 @@
                 <td class="px-4 py-3 text-sm text-gray-700">{{ $row->keluhan }}</td>
                 <td class="px-4 py-3 text-sm text-gray-700">{{ \Carbon\Carbon::parse($row->tanggal_servis)->format('d M Y') }}</td>
                 <td class="px-4 py-3 text-sm text-right">
-                    <a href="{{ route('daftar-service.edit', $row->id_servis) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Ubah</a>
+                    <a href="{{ route('daftar-service.show', $row->id_servis) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Detail</a>
+                    <a href="{{ route('daftar-service.edit', $row->id_servis) }}" class="text-indigo-600 hover:text-indigo-800 font-medium ml-2">Ubah</a>
                     <form action="{{ route('daftar-service.destroy', $row->id_servis) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus daftar service ini?')">
                         @csrf @method('DELETE')
                         <button type="submit" class="text-red-600 hover:text-red-800 font-medium ml-3">Hapus</button>

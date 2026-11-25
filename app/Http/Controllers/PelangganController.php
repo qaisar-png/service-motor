@@ -44,6 +44,11 @@ class PelangganController extends Controller
         return redirect()->route('pelanggan.index')->with('ok', 'Data pelanggan diperbarui');
     }
 
+    public function show(Pelanggan $pelanggan)
+    {
+        return view('pelanggan.show', compact('pelanggan'));
+    }
+
     public function destroy(Pelanggan $pelanggan)
     {
         $pelanggan->delete();

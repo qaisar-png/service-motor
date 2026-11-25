@@ -39,7 +39,8 @@
                 <td class="px-4 py-3 text-sm text-gray-700">{{ $row->nama_pemilik }}</td>
                 <td class="px-4 py-3 text-sm text-gray-700">{{ $row->warna }}</td>
                 <td class="px-4 py-3 text-sm text-right">
-                    <a href="{{ route('kendaraan.edit', $row->no_plat) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Ubah</a>
+                    <a href="{{ route('kendaraan.show', $row->no_plat) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Detail</a>
+                    <a href="{{ route('kendaraan.edit', $row->no_plat) }}" class="text-indigo-600 hover:text-indigo-800 font-medium ml-2">Ubah</a>
                     <form action="{{ route('kendaraan.destroy', $row->no_plat) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data kendaraan ini?')">
                         @csrf @method('DELETE')
                         <button type="submit" class="text-red-600 hover:text-red-800 font-medium ml-3">Hapus</button>

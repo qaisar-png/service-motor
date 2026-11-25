@@ -39,7 +39,8 @@
                 <td class="px-4 py-3 text-sm text-gray-700">{{ $row->nama_mekanik }}</td>
                 <td class="px-4 py-3 text-sm text-gray-700">{{ $row->sparepart_pengganti ?? '-' }}</td>
                 <td class="px-4 py-3 text-sm text-right">
-                    <a href="{{ route('data-service.edit', $row->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Ubah</a>
+                    <a href="{{ route('data-service.show', $row->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium">Detail</a>
+                    <a href="{{ route('data-service.edit', $row->id) }}" class="text-indigo-600 hover:text-indigo-800 font-medium ml-2">Ubah</a>
                     <form action="{{ route('data-service.destroy', $row->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Yakin ingin menghapus data service ini?')">
                         @csrf @method('DELETE')
                         <button type="submit" class="text-red-600 hover:text-red-800 font-medium ml-3">Hapus</button>

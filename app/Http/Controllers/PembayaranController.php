@@ -51,6 +51,12 @@ class PembayaranController extends Controller
         return redirect()->route('pembayaran.index')->with('ok', 'Pembayaran diperbarui');
     }
 
+    public function show(Pembayaran $pembayaran)
+    {
+        $pembayaran->load('daftarService.kendaraan', 'daftarService.pelanggan');
+        return view('pembayaran.show', compact('pembayaran'));
+    }
+
     public function destroy(Pembayaran $pembayaran)
     {
         $pembayaran->delete();
