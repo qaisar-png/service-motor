@@ -44,6 +44,7 @@
         @endforeach
         </tbody>
     </table>
+</div>
 @else
     <div class="bg-white p-8 rounded-lg border border-gray-200 text-center">
         <p class="text-gray-500">Belum ada data pelanggan.</p>

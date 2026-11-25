@@ -10,7 +10,7 @@
             <select name="id_servis" id="id_servis" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" required>
                 <option value="">-- Pilih Id Servis Pelanggan --</option>
                 @foreach($servis as $s)
-                    <option value="{{ $s->id_servis }}" {{ old('id_servis', $pembayaran->id_servis) === $s->id_servis ? 'selected' : '' }}>{{ $s->id_servis }} - {{ $s->keluhan }}</option>
+                    <option value="{{ $s->id_servis }}" {{ old('id_servis', $pembayaran->id_servis) == $s->id_servis ? 'selected' : '' }}>{{ $s->id_servis }} - {{ $s->keluhan }}</option>
                 @endforeach
             </select>
             @error('id_servis') <p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror

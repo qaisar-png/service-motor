@@ -20,7 +20,7 @@
             <select name="id_pelanggan" id="id_pelanggan" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" required>
                 <option value="">-- Pilih Pelanggan --</option>
                 @foreach($pelanggan as $p)
-                    <option value="{{ $p->id_pelanggan }}" {{ old('id_pelanggan', $daftarService->id_pelanggan) === $p->id_pelanggan ? 'selected' : '' }}>{{ $p->id_pelanggan }} - {{ $p->nama_lengkap }}</option>
+                    <option value="{{ $p->id_pelanggan }}" {{ old('id_pelanggan', $daftarService->id_pelanggan) == $p->id_pelanggan ? 'selected' : '' }}>{{ $p->id_pelanggan }} - {{ $p->nama_lengkap }}</option>
                 @endforeach
             </select>
             @error('id_pelanggan') <p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror

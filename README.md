@@ -1,6 +1,6 @@
 # Aplikasi Servis Motor
 
-Aplikasi manajemen servis motor berbasis **Laravel** dan **MySQL**, dengan antarmuka web (Blade + Bootstrap) dan **REST API** yang dapat diuji menggunakan **Postman**.
+Aplikasi manajemen servis motor berbasis **Laravel** dan **MySQL**, dengan antarmuka web (Blade + Tailwind CSS) dan **REST API** yang dapat diuji menggunakan **Postman**.
 
 Dibuat sebagai Tugas Project Akhir.
 
@@ -24,7 +24,7 @@ Dibuat sebagai Tugas Project Akhir.
 - Laravel 11/12
 - MySQL / MariaDB
 - Composer
-- Bootstrap 5 (via CDN)
+- Tailwind CSS (via CDN, butuh koneksi internet)
 - Postman (untuk pengujian API)
 - Git
 

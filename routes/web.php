@@ -3,9 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\{PelangganController, KendaraanController, DaftarServiceController, DataServiceController, PembayaranController};
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::redirect('/', '/pelanggan');
 Route::resource('pelanggan', PelangganController::class);
 Route::resource('kendaraan', KendaraanController::class);
