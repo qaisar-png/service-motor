@@ -6,12 +6,14 @@ use App\Models\DaftarService;
 use App\Models\Kendaraan;
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class DaftarServiceController extends Controller
 {
-    private function rules()
+    private function rules($id = null)
     {
         return [
+            'id_servis'      => ['required', 'string', 'max:10', Rule::unique('daftar_service', 'id_servis')->ignore($id, 'id_servis')],
             'no_plat'        => 'required|exists:kendaraan,no_plat',
             'id_pelanggan'   => 'required|exists:pelanggan,id_pelanggan',
             'keluhan'        => 'required|string',
@@ -53,7 +55,7 @@ class DaftarServiceController extends Controller
 
     public function update(Request $request, DaftarService $daftarService)
     {
-        $daftarService->update($request->validate($this->rules()));
+        $daftarService->update($request->validate($this->rules($daftarService->id_servis)));
         return redirect()->route('daftar-service.index')->with('ok', 'Daftar service diperbarui');
     }
 

@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('daftar_service', function (Blueprint $t) {
-    $t->id('id_servis');
+    $t->string('id_servis', 10)->primary();
     $t->string('no_plat', 15);
-    $t->unsignedBigInteger('id_pelanggan');
+    $t->string('id_pelanggan', 10);
     $t->text('keluhan');
     $t->date('tanggal_servis');
     $t->timestamps();

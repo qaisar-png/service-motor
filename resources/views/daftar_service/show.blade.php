@@ -11,7 +11,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             <div>
                 <p class="text-xs font-medium text-gray-500 uppercase mb-1">Id Servis</p>
-                <p class="text-sm text-gray-900 font-medium">#{{ $daftarService->id_servis }}</p>
+                <p class="text-sm text-gray-900 font-medium">{{ $daftarService->id_servis }}</p>
             </div>
             <div>
                 <p class="text-xs font-medium text-gray-500 uppercase mb-1">No Plat Kendaraan</p>

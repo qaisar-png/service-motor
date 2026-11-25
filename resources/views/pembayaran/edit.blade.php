@@ -3,7 +3,7 @@
 @section('content')
 <div class="max-w-2xl">
     <h2 class="text-xl font-semibold text-gray-900 mb-6">Ubah Pembayaran Service</h2>
-    <form action="{{ route('pembayaran.edit', $pembayaran->id) }}" method="POST" class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-4">
+    <form action="{{ route('pembayaran.update', $pembayaran->id) }}" method="POST" class="bg-white p-6 rounded-lg border border-gray-200 shadow-sm space-y-4">
         @csrf @method('PUT')
         <div>
             <label class="block text-sm font-medium text-gray-700 mb-1">Id Servis Pelanggan <span class="text-red-500">*</span></label>

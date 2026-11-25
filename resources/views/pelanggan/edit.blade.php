@@ -7,6 +7,11 @@
         @csrf @method('PUT')
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
+                <label class="block text-sm font-medium text-gray-700 mb-1">Id Pelanggan <span class="text-red-500">*</span></label>
+                <input type="text" name="id_pelanggan" value="{{ old('id_pelanggan', $pelanggan->id_pelanggan) }}" maxlength="10" placeholder="Contoh: P001" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none bg-gray-50" readonly required>
+                @error('id_pelanggan') <p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror
+            </div>
+            <div>
                 <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
                 <input type="text" name="nama_lengkap" value="{{ old('nama_lengkap', $pelanggan->nama_lengkap) }}" placeholder="Masukkan nama lengkap" class="w-full px-3 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none" required>
                 @error('nama_lengkap') <p class="text-xs text-red-600 mt-1">{{ $message }}</p>@enderror

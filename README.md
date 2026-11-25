@@ -78,9 +78,9 @@ Aplikasi dapat diakses di `http://127.0.0.1:8000`.
 
 | Tabel | Primary Key | Foreign Key |
 |-------|-------------|-------------|
-| `pelanggan` | `id_pelanggan` | - |
+| `pelanggan` | `id_pelanggan` (kode diisi manual, mis. P001) | - |
 | `kendaraan` | `no_plat` | - |
-| `daftar_service` | `id_servis` | `no_plat` ke `kendaraan`, `id_pelanggan` ke `pelanggan` |
+| `daftar_service` | `id_servis` (kode diisi manual, mis. S001) | `no_plat` ke `kendaraan`, `id_pelanggan` ke `pelanggan` |
 | `data_service` | `id` | `id_servis` ke `daftar_service` |
 | `pembayaran` | `id` | `id_servis` ke `daftar_service` |
 
@@ -123,6 +123,7 @@ Pola yang sama berlaku untuk resource berikut:
 
 ```json
 {
+  "id_pelanggan": "P001",
   "nama_lengkap": "Budi Santoso",
   "no_hp": "081234567890",
   "alamat": "Jl. Gatot Subroto No. 10, Medan",
@@ -147,8 +148,9 @@ Pola yang sama berlaku untuk resource berikut:
 
 ```json
 {
+  "id_servis": "S001",
   "no_plat": "BK 1234 AB",
-  "id_pelanggan": 1,
+  "id_pelanggan": "P001",
   "keluhan": "Rem depan blong",
   "tanggal_servis": "2026-11-10"
 }
@@ -158,7 +160,7 @@ Pola yang sama berlaku untuk resource berikut:
 
 ```json
 {
-  "id_servis": 1,
+  "id_servis": "S001",
   "estimasi_service": "1 hari",
   "nama_mekanik": "Pak Joko",
   "sparepart_pengganti": "Kampas rem depan"
@@ -169,7 +171,7 @@ Pola yang sama berlaku untuk resource berikut:
 
 ```json
 {
-  "id_servis": 1,
+  "id_servis": "S001",
   "jumlah_biaya": 150000,
   "jenis_pembayaran": "Cash / Tunai",
   "keterangan": "Lunas"

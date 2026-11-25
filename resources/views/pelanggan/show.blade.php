@@ -46,7 +46,7 @@
                     <tbody class="divide-y divide-gray-200">
                     @foreach($pelanggan->daftarServices as $ds)
                         <tr>
-                            <td class="px-4 py-3 text-gray-900">#{{ $ds->id_servis }}</td>
+                            <td class="px-4 py-3 text-gray-900">{{ $ds->id_servis }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ $ds->keluhan }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ \Carbon\Carbon::parse($ds->tanggal_servis)->format('d M Y') }}</td>
                             <td class="px-4 py-3 text-right">

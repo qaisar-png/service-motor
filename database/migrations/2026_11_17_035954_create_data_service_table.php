@@ -13,7 +13,7 @@ return new class extends Migration
     {
        Schema::create('data_service', function (Blueprint $t) {
     $t->id();
-    $t->unsignedBigInteger('id_servis');
+    $t->string('id_servis', 10);
     $t->string('estimasi_service');
     $t->string('nama_mekanik');
     $t->string('sparepart_pengganti')->nullable();

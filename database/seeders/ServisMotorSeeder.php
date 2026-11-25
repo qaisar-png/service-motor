@@ -15,18 +15,21 @@ class ServisMotorSeeder extends Seeder
     {
         // 1. Pelanggan (tabel induk)
         $budi = Pelanggan::create([
+            'id_pelanggan' => 'P001',
             'nama_lengkap' => 'Budi Santoso',
             'no_hp'        => '081234567890',
             'alamat'       => 'Jl. Gatot Subroto No. 10, Medan',
             'pekerjaan'    => 'Wiraswasta',
         ]);
         $siti = Pelanggan::create([
+            'id_pelanggan' => 'P002',
             'nama_lengkap' => 'Siti Aminah',
             'no_hp'        => '082345678901',
             'alamat'       => 'Jl. Sisingamangaraja No. 25, Medan',
             'pekerjaan'    => 'Guru',
         ]);
         $andi = Pelanggan::create([
+            'id_pelanggan' => 'P003',
             'nama_lengkap' => 'Andi Pratama',
             'no_hp'        => '083456789012',
             'alamat'       => 'Jl. Setia Budi No. 7, Medan',
@@ -52,14 +55,17 @@ class ServisMotorSeeder extends Seeder
 
         // 3. Daftar service (butuh pelanggan + kendaraan)
         $s1 = DaftarService::create([
+            'id_servis' => 'S001',
             'no_plat' => 'BK 1234 AB', 'id_pelanggan' => $budi->id_pelanggan,
             'keluhan' => 'Rem depan blong', 'tanggal_servis' => '2026-11-10',
         ]);
         $s2 = DaftarService::create([
+            'id_servis' => 'S002',
             'no_plat' => 'BK 5678 CD', 'id_pelanggan' => $siti->id_pelanggan,
             'keluhan' => 'Mesin brebet saat digas', 'tanggal_servis' => '2026-11-12',
         ]);
         $s3 = DaftarService::create([
+            'id_servis' => 'S003',
             'no_plat' => 'BK 9012 EF', 'id_pelanggan' => $andi->id_pelanggan,
             'keluhan' => 'Ganti oli dan servis berkala', 'tanggal_servis' => '2026-11-15',
         ]);

@@ -28,7 +28,7 @@
         <tbody class="divide-y divide-gray-200">
         @foreach($data as $row)
             <tr>
-                <td class="px-4 py-3 text-sm text-gray-900">#{{ $row->id_servis }}</td>
+                <td class="px-4 py-3 text-sm text-gray-900">{{ $row->id_servis }}</td>
                 <td class="px-4 py-3 text-sm text-gray-700">{{ optional($row->kendaraan)->no_plat }}</td>
                 <td class="px-4 py-3 text-sm text-gray-900">{{ $row->id_pelanggan }}</td>
                 <td class="px-4 py-3 text-sm text-gray-700">{{ optional($row->pelanggan)->nama_lengkap }}</td>

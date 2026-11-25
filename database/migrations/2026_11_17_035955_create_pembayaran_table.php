@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('pembayaran', function (Blueprint $t) {
     $t->id();
-    $t->unsignedBigInteger('id_servis');
+    $t->string('id_servis', 10);
     $t->unsignedBigInteger('jumlah_biaya');
     $t->enum('jenis_pembayaran', ['Cash / Tunai', 'Non Tunai']);
     $t->text('keterangan')->nullable();

@@ -15,7 +15,7 @@
             </div>
             <div>
                 <p class="text-xs font-medium text-gray-500 uppercase mb-1">Id Servis Pelanggan</p>
-                <p class="text-sm text-gray-900 font-medium">#{{ optional($dataService->daftarService)->id_servis ?? '-' }}</p>
+                <p class="text-sm text-gray-900 font-medium">{{ optional($dataService->daftarService)->id_servis ?? '-' }}</p>
             </div>
             <div class="col-span-2">
                 <p class="text-xs font-medium text-gray-500 uppercase mb-1">Keluhan Kendaraan</p>

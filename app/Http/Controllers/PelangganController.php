@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Pelanggan;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rule;
 
 class PelangganController extends Controller
 {
-    private function rules()
+    private function rules($id = null)
     {
         return [
+            'id_pelanggan' => ['required', 'string', 'max:10', Rule::unique('pelanggan', 'id_pelanggan')->ignore($id, 'id_pelanggan')],
             'nama_lengkap' => 'required|string|max:255',
             'no_hp'        => 'required|string|max:20',
             'alamat'       => 'required|string',
@@ -40,7 +42,7 @@ class PelangganController extends Controller
 
     public function update(Request $request, Pelanggan $pelanggan)
     {
-        $pelanggan->update($request->validate($this->rules()));
+        $pelanggan->update($request->validate($this->rules($pelanggan->id_pelanggan)));
         return redirect()->route('pelanggan.index')->with('ok', 'Data pelanggan diperbarui');
     }
 
